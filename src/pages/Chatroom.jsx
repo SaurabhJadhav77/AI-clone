@@ -1,21 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { addMessage } from "../redux/chatroomSlice";
 import "../styles/Chatroom.css";
-
+import { Button } from "@mui/material"; 
 const MESSAGES_PER_PAGE = 20;
 
-function Chatroom() {
-  const { id } = useParams();
+function Chatroom({ roomId, onClose }) {
   const dispatch = useDispatch();
-  const { chatrooms, selectedChatroomId } = useSelector((state) => state.chatroom);
-  const selectedChatroom = chatrooms.find((c) => c.id === selectedChatroomId);
+  const { chatrooms } = useSelector((state) => state.chatroom);
 
   const [loading, setLoading] = useState(true);
-  const chatEndRef = useRef(null);
   const room = useSelector((state) =>
-    state.chatroom.chatrooms.find((room) => room.id === id)
+    state.chatroom.chatrooms.find((room) => room.id === roomId)
   );
 
   const [message, setMessage] = useState("");
@@ -23,6 +19,8 @@ function Chatroom() {
   const [image, setImage] = useState(null);
   const [showTyping, setShowTyping] = useState(false);
   const messagesEndRef = useRef(null);
+
+  if (!room) return <p>Chatroom not found.</p>;
 
   const totalMessages = room?.messages.length || 0;
   const displayedMessages = room?.messages.slice(
@@ -39,7 +37,7 @@ function Chatroom() {
       sender: "user",
       timestamp: new Date().toISOString(),
     };
-    dispatch(addMessage({ roomId: id, message: newMsg }));
+    dispatch(addMessage({ roomId: roomId, message: newMsg }));
     setMessage("");
     setImage(null);
 
@@ -51,7 +49,7 @@ function Chatroom() {
         sender: "ai",
         timestamp: new Date().toISOString(),
       };
-      dispatch(addMessage({ roomId: id, message: aiReply }));
+      dispatch(addMessage({ roomId: roomId, message: aiReply }));
     }, 1500);
   };
 
@@ -85,16 +83,19 @@ function Chatroom() {
     setLoading(true);
     const timeout = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(timeout);
-  }, [selectedChatroomId]);
+  }, [roomId]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [room?.messages?.length]);
-
-  if (!room) return <p>Chatroom not found.</p>;
+  }, [room?.messages?.length, roomId]);
 
   return (
     <div className="chatroom-container">
+      <div className="chatroom-header">
+        <h3>{room.title}</h3>
+ <Button variant="contained" color="error" onClick={onClose}>
+          Close
+        </Button>      </div>
       <div className="messages" onScroll={handleScroll}>
         {loading && (
           <>

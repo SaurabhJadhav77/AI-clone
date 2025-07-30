@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import "../styles/Login.css"
+import "../index.css"
 import {
   Container,
   TextField,
@@ -80,8 +82,10 @@ useEffect(() => {
   if (loading) return <Box textAlign="center" mt={5}><CircularProgress /></Box>;
 
   return (
+    <div className="login-wrapper">
+    <div className="login-box">
     <Container maxWidth="xs" sx={{ mt: 5 }}>
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h5" gutterBottom sx={{ color: 'text.primary' }}>
         Login via OTP
       </Typography>
 
@@ -125,6 +129,8 @@ useEffect(() => {
         </Button>
       </form>
     </Container>
+        </div>
+  </div>
   );
 };
 

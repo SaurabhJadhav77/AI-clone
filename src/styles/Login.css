@@ -1,0 +1,22 @@
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0px;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 52px;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease-in-out;
+}
+
+
+
+

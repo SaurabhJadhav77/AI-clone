@@ -4,10 +4,11 @@ import { useSelector } from "react-redux";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Chatroom from "./pages/Chatroom";
-
+import MainLayout from "./pages/MainLayout";
+import "./App.css"
 const App = () => {
   const user = useSelector((state) => state.auth.user);
-   const [darkMode, setDarkMode] = useState(() => {
+  const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("darkMode") === "true";
   });
 
@@ -17,7 +18,7 @@ const App = () => {
   }, [darkMode]);
 
   return (
-    <div className="app">
+    <BrowserRouter>
       <button
         onClick={() => setDarkMode((prev) => !prev)}
         style={{
@@ -32,21 +33,19 @@ const App = () => {
           cursor: "pointer",
           zIndex: 1000,
         }}
-      ></button>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/dashboard"
-          element={user ? <Dashboard /> : <Navigate to="/login" replace />}
-        />
-        <Route
-          path="/chat/:id"
-          element={user ? <Chatroom /> : <Navigate to="/login" replace />}
-        />
-      </Routes>
+      >
+        {darkMode ? "Light" : "Dark"}
+      </button>
+
+      <div className="app">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+        <Route path="/dashboard/*" element={<MainLayout />}>
+          <Route path="chat/:id" element={<Chatroom />} />
+        </Route>
+        </Routes>
+      </div>
     </BrowserRouter>
-     </div>
   );
 };
 

@@ -190,6 +190,15 @@ body.dark-mode .skeleton {
   animation: pulse 1.2s ease-in-out infinite;
 }
 
+.chatroom-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  margin-right: 34rem;
+  
+}
+
 @keyframes pulse {
   0% {
     background-position: 200% 0;

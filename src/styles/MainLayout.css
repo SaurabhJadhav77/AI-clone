@@ -1,0 +1,52 @@
+/* MainLayout.css */
+
+.main-layout {
+  display: flex; 
+  width: 100vw; 
+  height: 100vh; 
+  overflow: hidden; 
+  align-items: flex-start; 
+  padding: 20px; 
+  gap: 24px; 
+}
+
+
+
+.main-layout > * {
+  flex-shrink: 0; 
+  box-sizing: border-box; 
+}
+
+.main-layout .dashboard-container { 
+  flex-basis: 100%; 
+  max-width: 600px; 
+  height: 100%; 
+  overflow-y: auto; 
+}
+
+.main-layout.with-chat .dashboard-container {
+  flex-basis: 35%; 
+  max-width: 450px;
+  min-width: 300px; 
+}
+
+.main-layout .chatroom-container { 
+  display: none; 
+}
+
+.main-layout.with-chat .chatroom-container {
+  display: flex;
+  flex-grow: 1;
+  max-width: 65%; 
+  min-width: 400px; 
+  height: 100%; 
+  margin: 0; 
+}
+
+body, html, #root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
