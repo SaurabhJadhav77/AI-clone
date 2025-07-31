@@ -65,8 +65,7 @@ const Dashboard = ({onOpenChat }) => {
     <Box
       sx={{
         p: 3,
-        maxWidth: "600px",
-        mx: "auto",
+
         display: "flex",
         flexDirection: "column",
         gap: 3,

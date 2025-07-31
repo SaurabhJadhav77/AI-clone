@@ -39,7 +39,7 @@ const App = () => {
 
       <div className="app">
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
         <Route path="/dashboard/*" element={<MainLayout />}>
           <Route path="chat/:id" element={<Chatroom />} />
         </Route>
