@@ -1,34 +1,56 @@
-# Gemini Chat UI
+# Gemini Clone – Conversational AI Chat Application
 
-A frontend-only Gemini-style AI chat application built using React and Redux. It supports OTP login (simulated), chatroom creation/deletion, and a chat interface with AI-like responses, image uploads, dark mode, and localStorage-based data persistence.
+This is a frontend project built as a Gemini-style conversational chat app using React and Redux. It includes features like OTP-based login, chatroom management, simulated AI responses, image upload, form validation, pagination, infinite scroll, and throttling.
 
----
+The app is responsive and styled using Material UI components and normal CSS. It is deployed using Vercel/Netlify.
 
-## Features
+## Live Link
 
-- OTP Login (mocked using setTimeout)
-- Country code picker using external API
-- Create, delete, and view chatrooms
-- AI-like chat with typing indicator and delayed responses
-- Infinite scroll for older messages (dummy data)
-- Pagination (20 messages per scroll)
-- Image upload in chat (base64 preview)
-- Copy-to-clipboard on hover
-- Dark mode toggle
-- Toast notifications using `alert()`
-- Mobile responsive UI
-- LocalStorage for login and chat data
-- Keyboard accessible
-- Skeleton loader for messages (optional fallback)
+https://ai-clone-zeta.vercel.app/
 
----
+## Setup Instructions
 
-## Tech Stack
+1. Clone the repository:
 
-- React
-- Redux Toolkit
-- React Router
-- React Hook Form + Zod (for form validation)
-- Pure CSS (no Tailwind or UI libraries)
-- UUID for unique IDs
+```bash
+git clone (https://github.com/SaurabhJadhav77/AI-clone.git)
+cd AI-clone
 
+npm install
+npm run dev
+
+Folder Str:
+src/
+├── actions/               # Redux action creators
+│   ├── authActions.js
+│   └── chatActions.js
+
+├── components/            # Reusable UI components
+│   ├── ChatroomItem.jsx
+│   ├── ChatroomList.jsx
+│   └── CreateChatroom.jsx
+
+├── constants/             # Static values and action types
+│   └── actionTypes.js
+
+├── pages/                 # Page-level components (routed views)
+│   ├── Chatroom.jsx
+│   ├── Dashboard.jsx
+│   ├── Login.jsx
+│   └── MainLayout.jsx
+
+├── redux/                 # Redux setup (slices, reducers, store)
+│   ├── authReducer.js
+│   ├── chatReducer.js
+│   ├── chatroomSlice.js
+│   └── store.js
+
+├── styles/                # Component-specific CSS
+│   ├── Chatroom.css
+│   ├── Login.css
+│   └── MainLayout.css
+
+├── App.css                # Global styles
+├── App.jsx                # Root component with routes
+├── index.css              # Global reset/base styles
+└── main.jsx               # Entry point (ReactDOM render)
